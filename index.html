@@ -455,6 +455,63 @@ const Icon = {
       <path d="m9 12 2 2 4-4" />
     </svg>
   ),
+  Car: (p) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2" />
+      <circle cx="7" cy="17" r="2" />
+      <path d="M9 17h6" />
+      <circle cx="17" cy="17" r="2" />
+    </svg>
+  ),
+  Home: (p) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  ),
+  Heart: (p) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+    </svg>
+  ),
+  Building2: (p) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+      <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+      <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+      <path d="M10 6h4" />
+      <path d="M10 10h4" />
+      <path d="M10 14h4" />
+      <path d="M10 18h4" />
+    </svg>
+  ),
+  Stethoscope: (p) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3" />
+      <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
+      <circle cx="20" cy="10" r="2" />
+    </svg>
+  ),
+  Plane: (p) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
+    </svg>
+  ),
+  Bike: (p) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <circle cx="18.5" cy="17.5" r="3.5" />
+      <circle cx="5.5" cy="17.5" r="3.5" />
+      <circle cx="15" cy="5" r="1" />
+      <path d="M12 17.5V14l-3-3 4-3 2 3h2" />
+    </svg>
+  ),
+  PiggyBank: (p) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z" />
+      <path d="M2 9v1c0 1.1.9 2 2 2h1" />
+      <path d="M16 11h0" />
+    </svg>
+  ),
   ChevronDown: (p) => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
       <path d="m6 9 6 6 6-6" />
@@ -768,89 +825,88 @@ function SobreSection() {
    COBERTURAS — lista numerada, clicável WhatsApp, serif nos nomes
 ================================================================= */
 const SEGUROS = [
-  { name: 'Seguro Auto', desc: 'Carro novo ou renovação com as melhores coberturas.' },
-  { name: 'Seguro Residencial', desc: 'Patrimônio protegido a partir de R$ 40,00 por mês.' },
-  { name: 'Seguro de Vida', desc: 'Proteção para sua família e benefício para funcionários.' },
-  { name: 'Seguro Empresarial', desc: 'Empresa blindada, negócio garantido em todas as frentes.' },
-  { name: 'Plano de Saúde', desc: 'Planos sob medida para você e sua família ou equipe.' },
-  { name: 'Seguro Viagem', desc: 'Viajar tranquilo é viajar protegido. Cobertura global.' },
-  { name: 'Seguro Moto', desc: 'Sua companheira de duas rodas com proteção completa.' },
-  { name: 'Consórcio', desc: 'Planeje seu próximo carro ou imóvel com parcelas justas.' },
+  { name: 'Seguro Auto',        desc: 'Carro novo ou renovação com as melhores coberturas do mercado.', icon: <Icon.Car /> },
+  { name: 'Seguro Residencial', desc: 'Patrimônio protegido a partir de R$ 40,00 por mês.',              icon: <Icon.Home /> },
+  { name: 'Seguro de Vida',     desc: 'Proteção para sua família e benefício para funcionários.',         icon: <Icon.Heart /> },
+  { name: 'Seguro Empresarial', desc: 'Empresa blindada, negócio garantido em todas as frentes.',         icon: <Icon.Building2 /> },
+  { name: 'Plano de Saúde',     desc: 'Planos sob medida para você e sua família ou equipe.',             icon: <Icon.Stethoscope /> },
+  { name: 'Seguro Viagem',      desc: 'Viajar tranquilo é viajar protegido. Cobertura global.',           icon: <Icon.Plane /> },
+  { name: 'Seguro Moto',        desc: 'Sua companheira de duas rodas com proteção completa.',             icon: <Icon.Bike /> },
+  { name: 'Consórcio',          desc: 'Planeje seu próximo carro ou imóvel com parcelas justas.',         icon: <Icon.PiggyBank /> },
 ];
 
+/**
+ * CoberturasSection — refinamento4
+ * - Grid 4 cols desktop / 2 tablet / 1 mobile
+ * - Cards "moldura invisível" (border 1px gray-100, no shadow default)
+ * - Hover sutil: border navy/20 + shadow-sm + translate-y -2px
+ * - Header sans-serif moderado (serif gigante removida — protagonismo migrou para cards)
+ */
 function CoberturasSection() {
-  const [hovered, setHovered] = useState(null);
   return (
-    <section id="servicos" className="px-6 md:px-10 lg:px-16 py-20 md:py-32" style={{ background: 'var(--bg-soft)' }}>
+    <section id="servicos" className="px-6 md:px-12 lg:px-16 py-20 md:py-32" style={{ background: 'var(--bg-soft)' }}>
       <div className="max-w-[88rem] mx-auto">
         <FadeIn>
           <p className="text-sm font-medium mb-6" style={{ color: 'var(--brand-medium)', letterSpacing: '0.05em' }}>
             // NOSSAS COBERTURAS
           </p>
           <h2
-            className="font-medium text-3xl sm:text-4xl mb-12 md:mb-16 max-w-2xl leading-tight"
+            className="font-medium text-3xl sm:text-4xl mb-16 md:mb-20 max-w-2xl leading-tight"
             style={{ color: 'var(--brand-deep)', letterSpacing: '-0.01em' }}
           >
-            Proteção completa para cada momento da sua vida.
+            Proteção completa.
           </h2>
         </FadeIn>
 
-        <ul onMouseLeave={() => setHovered(null)}>
-          {SEGUROS.map((s, i) => {
-            const dim = hovered !== null && hovered !== i;
-            return (
-              <li
-                key={i}
-                className="border-b"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {SEGUROS.map((s, i) => (
+            <FadeIn key={i} delay={i * 60}>
+              <a
+                href={`https://wa.me/5551984810400?text=${encodeURIComponent('Olá, quero cotar ' + s.name)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Cotar ${s.name} pelo WhatsApp`}
+                className="cobertura-card group block h-full p-6 md:p-8 rounded-xl bg-white"
                 style={{
-                  borderColor: 'rgba(15,42,95,0.1)',
-                  opacity: dim ? 0.35 : 1,
-                  transition: 'opacity 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  border: '1px solid #EEEEEE',
+                  transition: 'all 300ms ease-out',
                 }}
-                onMouseEnter={() => setHovered(i)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(15,42,95,0.2)';
+                  e.currentTarget.style.boxShadow = '0 1px 2px 0 rgba(15,42,95,0.05)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#EEEEEE';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
               >
-                <a
-                  href={`https://wa.me/5551984810400?text=${encodeURIComponent('Olá, quero cotar ' + s.name)}`}
-                  className="flex items-baseline justify-between py-6 md:py-8 gap-4 md:gap-8"
+                <div style={{ color: 'var(--brand-deep)' }} className="mb-6">
+                  {s.icon}
+                </div>
+                <h3
+                  className="font-heading text-2xl mb-3"
+                  style={{ color: 'var(--brand-deep)', fontWeight: 400, letterSpacing: '-0.01em' }}
                 >
-                  <span
-                    className="text-xs w-12 sm:w-14 shrink-0 font-medium"
-                    style={{ color: 'var(--brand-light)', letterSpacing: '0.05em' }}
-                  >
-                    {String(i + 1).padStart(2, '0')}/08
-                  </span>
-                  <span
-                    className="font-heading italic flex-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-                    style={{
-                      color: 'var(--brand-deep)',
-                      letterSpacing: '-0.02em',
-                      transform: hovered === i ? 'translateX(12px)' : 'translateX(0)',
-                      transition: 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1)',
-                    }}
-                  >
-                    {s.name}
-                  </span>
-                  <span
-                    className="hidden md:block text-sm leading-snug max-w-[280px]"
-                    style={{ color: 'var(--ink-muted)' }}
-                  >
-                    {s.desc}
-                  </span>
-                  <span
-                    className="text-xs sm:text-sm whitespace-nowrap inline-flex items-center gap-1 font-medium"
-                    style={{
-                      color: 'var(--brand-deep)',
-                      opacity: hovered === i ? 1 : 0,
-                      transition: 'opacity 300ms cubic-bezier(0.16, 1, 0.3, 1)',
-                    }}
-                  >
-                    Cotar →
-                  </span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+                  {s.name}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed mb-6 font-light"
+                  style={{ color: 'var(--ink-body)' }}
+                >
+                  {s.desc}
+                </p>
+                <span
+                  className="inline-flex items-center gap-1 text-sm font-medium"
+                  style={{ color: 'var(--brand-deep)' }}
+                >
+                  Cotar agora →
+                </span>
+              </a>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );
