@@ -21,9 +21,6 @@
           body: ['"Inter"', 'sans-serif'],
           sans: ['"Inter"', 'sans-serif'],
         },
-        borderRadius: {
-          DEFAULT: '9999px',
-        },
       },
     },
     corePlugins: { preflight: true },
@@ -37,8 +34,8 @@
     --brand-medium: #2563B0;
     --brand-light: #4A8AD4;
     --bg-base: #FFFFFF;
-    --bg-soft: #F5F7FA;
-    --ink-body: #3D3D3D;
+    --bg-soft: #FAFAFA;
+    --ink-body: #4B5563;
     --ink-muted: #6B7280;
     --border-soft: #E5E7EB;
     --whatsapp: #25D366;
@@ -64,69 +61,7 @@
     html { scroll-behavior: auto; }
   }
 
-  /* ============ LIQUID GLASS ============ */
-  .liquid-glass {
-    background: rgba(27, 63, 140, 0.04);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: none;
-    box-shadow:
-      inset 0 1px 1px rgba(255,255,255,0.6),
-      0 1px 3px rgba(15,42,95,0.08);
-    position: relative;
-    overflow: hidden;
-  }
-  .liquid-glass::before {
-    content: "";
-    position: absolute; inset: 0;
-    border-radius: inherit;
-    padding: 1.4px;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.6) 0%,
-      rgba(255,255,255,0.2) 20%,
-      rgba(255,255,255,0) 40%,
-      rgba(255,255,255,0) 60%,
-      rgba(255,255,255,0.2) 80%,
-      rgba(255,255,255,0.6) 100%);
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    pointer-events: none;
-  }
-  .liquid-glass-strong {
-    background: rgba(27, 63, 140, 0.07);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
-    border: none;
-    box-shadow:
-      0 4px 24px rgba(15,42,95,0.10),
-      inset 0 1px 1px rgba(255,255,255,0.5);
-    position: relative;
-    overflow: hidden;
-  }
-  .liquid-glass-strong::before {
-    content: "";
-    position: absolute; inset: 0;
-    border-radius: inherit;
-    padding: 1.4px;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.7) 0%,
-      rgba(255,255,255,0.25) 20%,
-      rgba(255,255,255,0) 40%,
-      rgba(255,255,255,0) 60%,
-      rgba(255,255,255,0.25) 80%,
-      rgba(255,255,255,0.7) 100%);
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    pointer-events: none;
-  }
-
-  /* ============ PARALLAX ============ */
+  /* ============ PARALLAX HERO ============ */
   .parallax-wrap {
     position: absolute;
     inset: 0;
@@ -144,15 +79,11 @@
     object-position: center top;
     will-change: transform;
   }
-  .parallax-overlay {
+  .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.90) 0%,
-      rgba(245,247,250,0.85) 50%,
-      rgba(245,247,250,0.95) 100%
-    );
+    background:
+      linear-gradient(to bottom, rgba(15,42,95,0.55) 0%, rgba(15,42,95,0.72) 60%, rgba(15,42,95,0.88) 100%);
   }
 
   /* ============ MARQUEE ============ */
@@ -176,8 +107,8 @@
     right: 24px;
     bottom: 24px;
     z-index: 60;
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     border-radius: 9999px;
     background: var(--whatsapp);
     color: #fff;
@@ -189,30 +120,11 @@
     transition: transform .3s var(--ease);
   }
   .wa-float:hover { transform: scale(1.06); }
-  .wa-tooltip {
-    position: absolute;
-    right: 72px;
-    top: 50%;
-    transform: translateY(-50%);
-    white-space: nowrap;
-    padding: 8px 14px;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    color: var(--brand-deep);
-    border-radius: 9999px;
-    opacity: 0;
-    transition: opacity .2s var(--ease);
-    pointer-events: none;
-  }
-  .wa-float:hover .wa-tooltip,
-  .wa-float:focus-visible .wa-tooltip {
-    opacity: 1;
-  }
 
   /* ============ FORM ============ */
   .field-wrap {
     position: relative;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
   .field-wrap input,
   .field-wrap textarea {
@@ -267,7 +179,7 @@
   .faq-answer.open {
     max-height: 400px;
     opacity: 1;
-    padding-bottom: 20px;
+    padding-bottom: 24px;
   }
   .faq-chevron {
     transition: transform .3s var(--ease);
@@ -310,13 +222,17 @@
     transform: translateY(0);
   }
 
+  /* ============ DEPOIMENTOS CAROUSEL ============ */
+  .depo-fade {
+    transition: opacity 400ms var(--ease), transform 400ms var(--ease);
+  }
+
   /* ============ HEADING WORD WRAP ============ */
   h1, h2, h3 {
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
 
-  /* Anchors offset for fixed navbar */
   section { scroll-margin-top: 80px; }
 </style>
 
@@ -352,6 +268,17 @@ function useParallax(speed = 0.12) {
     return () => window.removeEventListener('scroll', onScroll);
   }, [speed]);
   return y;
+}
+
+function useScrolled(threshold = 20) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > threshold);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [threshold]);
+  return scrolled;
 }
 
 /* =================================================================
@@ -411,7 +338,7 @@ function AnimatedHeading({ as: Tag = 'h1', text, className = '', style = {}, hig
                           className={'ah-char' + (show ? ' in' : '')}
                           style={{
                             transitionDelay: `${delay}ms`,
-                            color: isHl ? 'var(--brand-primary)' : undefined,
+                            color: isHl ? '#fff' : undefined,
                           }}
                         >
                           {ch}
@@ -424,7 +351,7 @@ function AnimatedHeading({ as: Tag = 'h1', text, className = '', style = {}, hig
                       className={'ah-char' + (show ? ' in' : '')}
                       style={{ transitionDelay: `${(li * 700) + (charIdx++ * charDelay) + 200}ms` }}
                     >
-                      {' '}
+                      {' '}
                     </span>
                   )}
                 </React.Fragment>
@@ -502,52 +429,45 @@ const Icon = {
       <path d="m12 5 7 7-7 7" />
     </svg>
   ),
-  ArrowUpRight: (p) => (
+  ArrowLeft: (p) => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M7 17 17 7" />
-      <path d="M7 7h10v10" />
-    </svg>
-  ),
-  Shield: (p) => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
-    </svg>
-  ),
-  ShieldCheck: (p) => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-  ),
-  Building: (p) => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-      <path d="M9 22V12h6v10" />
-    </svg>
-  ),
-  CheckCircle: (p) => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <circle cx="12" cy="12" r="10" />
-      <path d="m9 12 2 2 4-4" />
+      <path d="M19 12H5" />
+      <path d="m12 19-7-7 7-7" />
     </svg>
   ),
   Headphones: (p) => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
       <path d="M3 14v-2a9 9 0 0 1 18 0v2" />
       <path d="M21 14v3a2 2 0 0 1-2 2h-2v-7h4Z" />
       <path d="M3 14v3a2 2 0 0 0 2 2h2v-7H3Z" />
     </svg>
   ),
   BarChart: (p) => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
       <line x1="18" x2="18" y1="20" y2="10" />
       <line x1="12" x2="12" y1="20" y2="4" />
       <line x1="6" x2="6" y1="20" y2="14" />
     </svg>
   ),
+  ShieldCheck: (p) => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  ),
   ChevronDown: (p) => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
       <path d="m6 9 6 6 6-6" />
+    </svg>
+  ),
+  ChevronLeft: (p) => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="m15 18-6-6 6-6" />
+    </svg>
+  ),
+  ChevronRight: (p) => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="m9 18 6-6-6-6" />
     </svg>
   ),
   Menu: (p) => (
@@ -592,10 +512,11 @@ function Marquee({ duration = '30s', className = '', children }) {
 }
 
 /* =================================================================
-   NAVBAR
+   NAVBAR — branco translucido, shadow no scroll
 ================================================================= */
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const scrolled = useScrolled(20);
   const links = [
     { href: '#inicio', label: 'Início' },
     { href: '#sobre', label: 'Sobre' },
@@ -604,19 +525,30 @@ function Navbar() {
     { href: '#contato', label: 'Contato' },
   ];
   return (
-    <nav className="fixed top-3 sm:top-4 left-0 right-0 z-40 px-4 sm:px-6 md:px-10 lg:px-16" aria-label="Navegação principal">
-      <div className="liquid-glass max-w-[88rem] mx-auto flex items-center justify-between gap-3 px-4 py-2.5" style={{ borderRadius: '14px' }}>
-        <a href="#inicio" className="font-heading italic text-xl sm:text-2xl font-semibold tracking-tight shrink-0" style={{ color: 'var(--brand-primary)' }}>
+    <nav
+      className="fixed top-0 left-0 right-0 z-40"
+      style={{
+        background: 'rgba(255,255,255,0.85)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderBottom: scrolled ? '1px solid rgba(15,42,95,0.08)' : '1px solid transparent',
+        boxShadow: scrolled ? '0 1px 0 rgba(15,42,95,0.04)' : 'none',
+        transition: 'border-color .3s var(--ease), box-shadow .3s var(--ease)',
+      }}
+      aria-label="Navegação principal"
+    >
+      <div className="max-w-[88rem] mx-auto flex items-center justify-between gap-3 px-6 md:px-10 lg:px-16 py-4">
+        <a href="#inicio" className="font-heading italic text-xl sm:text-2xl font-semibold tracking-tight shrink-0" style={{ color: 'var(--brand-deep)' }}>
           MAYROS
         </a>
-        <ul className="hidden md:flex items-center gap-6 lg:gap-8">
+        <ul className="hidden md:flex items-center gap-8">
           {links.map((l, i) => (
             <li key={i}>
               <a
                 href={l.href}
-                className="text-sm font-body font-medium transition-colors duration-200"
+                className="text-sm font-medium transition-colors duration-200"
                 style={{ color: 'rgba(15,42,95,0.7)' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--brand-primary)'}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--brand-deep)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(15,42,95,0.7)'}
               >
                 {l.label}
@@ -627,16 +559,16 @@ function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href="https://wa.me/5551984810400"
-            className="hidden sm:inline-flex text-white px-5 py-2 rounded-full text-sm font-body font-medium transition-colors duration-200 items-center"
-            style={{ background: 'var(--brand-primary)' }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--brand-deep)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'var(--brand-primary)'}
+            className="hidden sm:inline-flex text-white px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 items-center"
+            style={{ background: 'var(--brand-deep)' }}
+            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--brand-primary)'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'var(--brand-deep)'}
           >
             Cotar agora
           </a>
           <button
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full"
-            style={{ color: 'var(--brand-primary)' }}
+            className="md:hidden inline-flex items-center justify-center w-10 h-10"
+            style={{ color: 'var(--brand-deep)' }}
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
@@ -645,13 +577,13 @@ function Navbar() {
         </div>
       </div>
       {open && (
-        <div className="liquid-glass max-w-[88rem] mx-auto mt-2 p-4 md:hidden" style={{ borderRadius: '14px' }}>
-          <ul className="flex flex-col gap-3">
+        <div className="md:hidden border-t" style={{ borderColor: 'rgba(15,42,95,0.08)', background: 'rgba(255,255,255,0.95)' }}>
+          <ul className="flex flex-col gap-1 px-6 py-4">
             {links.map((l, i) => (
               <li key={i}>
                 <a
                   href={l.href}
-                  className="block font-body font-medium text-base py-1"
+                  className="block font-medium text-base py-2"
                   style={{ color: 'var(--brand-deep)' }}
                   onClick={() => setOpen(false)}
                 >
@@ -663,7 +595,7 @@ function Navbar() {
               <a
                 href="https://wa.me/5551984810400"
                 className="inline-flex text-white px-5 py-2 rounded-full text-sm font-medium mt-2"
-                style={{ background: 'var(--brand-primary)' }}
+                style={{ background: 'var(--brand-deep)' }}
               >
                 Cotar agora
               </a>
@@ -676,21 +608,15 @@ function Navbar() {
 }
 
 /* =================================================================
-   HERO
+   HERO — foto + gradient navy + serif headline
 ================================================================= */
 function HeroSection() {
   const y = useParallax(0.10);
   const HERO_BG = 'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1920&q=80';
-
   const partners = ['Porto', 'Bradesco', 'Allianz', 'Liberty', 'HDI', 'Azul', 'Mapfre', 'Sompo'];
-  const stats = [
-    { icon: <Icon.Shield />, num: '+10.000', label: 'Clientes protegidos' },
-    { icon: <Icon.Building />, num: '+30 anos', label: 'No mercado' },
-    { icon: <Icon.CheckCircle />, num: '15+', label: 'Seguradoras parceiras' },
-  ];
 
   return (
-    <section id="inicio" className="relative min-h-screen overflow-hidden bg-white">
+    <section id="inicio" className="relative min-h-screen overflow-hidden flex flex-col">
       <div className="parallax-wrap" aria-hidden="true">
         <img
           src={HERO_BG}
@@ -699,179 +625,150 @@ function HeroSection() {
           style={{ transform: `translateY(${y}px)` }}
           loading="eager"
         />
-        <div className="parallax-overlay" />
+        <div className="hero-overlay" />
       </div>
 
-      <div className="relative z-10 max-w-[88rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-28 sm:pt-32 md:pt-36 pb-12 md:pb-16">
+      <div className="relative z-10 max-w-[88rem] mx-auto px-6 md:px-10 lg:px-16 pt-40 md:pt-48 pb-20 md:pb-32 flex-1 flex flex-col justify-center">
 
         <FadeIn delay={300}>
-          <div
-            className="liquid-glass inline-flex items-center px-3.5 py-1 mb-6"
-            style={{ borderRadius: '9999px' }}
+          <span
+            className="inline-block text-[10px] sm:text-[11px] font-medium uppercase mb-8"
+            style={{ color: 'rgba(255,255,255,0.7)', letterSpacing: '0.18em' }}
           >
-            <span
-              className="text-[10px] sm:text-[11px] font-body font-medium uppercase"
-              style={{ color: 'var(--brand-medium)', letterSpacing: '0.14em' }}
-            >
-              MAYROS CORRETORA · PROTEÇÃO QUE TRANSFORMA
-            </span>
-          </div>
+            // MAYROS CORRETORA DE SEGUROS
+          </span>
         </FadeIn>
 
-        <div className="lg:grid lg:grid-cols-[1fr_auto] lg:gap-10 lg:items-end">
-          <div className="max-w-3xl">
-            <AnimatedHeading
-              text={'Sua proteção,\nnossa palavra.'}
-              className="font-heading italic font-normal text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] mb-5"
-              style={{ color: 'var(--brand-deep)', letterSpacing: '-0.04em', lineHeight: 1.02 }}
-              highlight={['proteção', 'palavra']}
-            />
+        <div className="max-w-4xl">
+          <AnimatedHeading
+            text={'Sua proteção,\nnossa palavra.'}
+            className="font-heading italic font-normal text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] mb-8"
+            style={{ color: '#fff', letterSpacing: '-0.04em', lineHeight: 1.0 }}
+            highlight={['proteção', 'palavra']}
+          />
 
-            <FadeIn delay={800}>
-              <p
-                className="text-base md:text-lg mb-6 max-w-xl leading-relaxed font-body font-light"
-                style={{ color: 'var(--ink-body)' }}
-              >
-                Cotamos em todas as seguradoras para garantir o melhor preço com as melhores coberturas. Atendimento 100% humanizado.
-              </p>
-            </FadeIn>
-
-            <FadeIn delay={1100}>
-              <div className="flex flex-wrap gap-3 sm:gap-4">
-                <a
-                  href="https://wa.me/5551984810400"
-                  className="text-white px-7 py-3 rounded-full font-body font-medium text-sm md:text-base transition-colors duration-200"
-                  style={{ background: 'var(--brand-primary)' }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'var(--brand-deep)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'var(--brand-primary)'}
-                >
-                  Cotar agora
-                </a>
-                <a
-                  href="https://wa.me/5551984810400"
-                  className="liquid-glass-strong px-7 py-3 rounded-full font-body font-medium text-sm md:text-base inline-flex items-center gap-2 transition-colors duration-200"
-                  style={{ color: 'var(--brand-primary)', border: '1px solid rgba(27,63,140,0.2)' }}
-                >
-                  Falar no WhatsApp
-                </a>
-              </div>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={1400} className="mt-8 lg:mt-0">
-            <div
-              className="liquid-glass inline-block px-5 sm:px-6 py-3 sm:py-4"
-              style={{
-                borderRadius: '14px',
-                border: '1px solid rgba(27,63,140,0.2)',
-              }}
+          <FadeIn delay={900}>
+            <p
+              className="text-base md:text-lg mb-10 max-w-xl leading-relaxed font-light"
+              style={{ color: 'rgba(255,255,255,0.85)' }}
             >
-              <p
-                className="font-heading italic font-medium text-lg sm:text-xl lg:text-2xl"
-                style={{ color: 'var(--brand-deep)' }}
+              Cotamos em todas as seguradoras para garantir o melhor preço com as melhores coberturas. Atendimento 100% humanizado, há mais de 30 anos.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={1100}>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="https://wa.me/5551984810400"
+                className="px-7 py-3.5 rounded-full font-medium text-sm md:text-base transition-colors duration-200"
+                style={{ background: '#fff', color: 'var(--brand-deep)' }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.9)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = '#fff'}
               >
-                Proteção · Confiança · Tranquilidade.
-              </p>
+                Cotar agora
+              </a>
+              <a
+                href="https://wa.me/5551984810400"
+                className="px-7 py-3.5 rounded-full font-medium text-sm md:text-base inline-flex items-center gap-2 transition-colors duration-200"
+                style={{ color: '#fff', border: '1px solid rgba(255,255,255,0.4)' }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+              >
+                Falar no WhatsApp
+              </a>
             </div>
           </FadeIn>
         </div>
+      </div>
 
-        <FadeIn delay={1300}>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-10 sm:mt-12 max-w-3xl">
-            {stats.map((s, i) => (
-              <div
-                key={i}
-                className="liquid-glass p-4 sm:p-5"
-                style={{ borderRadius: '1.25rem' }}
-              >
-                <div style={{ color: 'var(--brand-primary)' }} className="mb-3">{s.icon}</div>
-                <p
-                  className="font-heading italic text-3xl sm:text-4xl leading-none"
-                  style={{ color: 'var(--brand-primary)', letterSpacing: '-1px' }}
-                >
-                  {s.num}
-                </p>
-                <p className="font-body text-xs mt-2" style={{ color: 'var(--ink-muted)' }}>
-                  {s.label}
-                </p>
+      <FadeIn delay={1400} className="relative z-10 pb-10">
+        <div className="max-w-[88rem] mx-auto px-6 md:px-10 lg:px-16">
+          <p className="text-[10px] sm:text-xs uppercase mb-4" style={{ color: 'rgba(255,255,255,0.5)', letterSpacing: '0.15em' }}>
+            Principais seguradoras parceiras
+          </p>
+          <Marquee duration="35s">
+            {partners.map((p, i) => (
+              <div key={i} className="flex items-center gap-10 px-6 font-heading italic text-xl sm:text-2xl" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                <span>{p}</span>
+                <span>·</span>
               </div>
             ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={1500}>
-          <div className="flex flex-col items-center gap-4 mt-12 sm:mt-16">
-            <div className="liquid-glass px-3.5 py-1" style={{ borderRadius: '9999px' }}>
-              <span
-                className="text-[10px] sm:text-xs font-body uppercase"
-                style={{ color: 'var(--ink-muted)', letterSpacing: '0.1em' }}
-              >
-                TRABALHAMOS COM AS PRINCIPAIS SEGURADORAS
-              </span>
-            </div>
-            <Marquee duration="30s">
-              {partners.map((p, i) => (
-                <div key={i} className="flex items-center gap-8 sm:gap-10 px-5 font-heading italic text-xl sm:text-2xl" style={{ color: 'rgba(15,42,95,0.5)' }}>
-                  <span>{p}</span>
-                  <span>·</span>
-                </div>
-              ))}
-            </Marquee>
-          </div>
-        </FadeIn>
-      </div>
+          </Marquee>
+        </div>
+      </FadeIn>
     </section>
   );
 }
 
 /* =================================================================
-   SOBRE
+   SOBRE — unificada (Mayros + 30 anos)
 ================================================================= */
 function SobreSection() {
   return (
-    <section id="sobre" className="px-4 sm:px-6 md:px-10 lg:px-16 py-16 sm:py-20 md:py-24" style={{ background: 'var(--bg-soft)' }}>
-      <div className="max-w-[88rem] mx-auto md:grid md:grid-cols-2 md:gap-10 lg:gap-12 md:items-start">
+    <section id="sobre" className="px-6 md:px-10 lg:px-16 py-20 md:py-32 bg-white">
+      <div className="max-w-[88rem] mx-auto">
         <FadeIn>
-          <h2
-            className="font-heading italic font-medium leading-tight mb-6 sm:mb-8 text-4xl sm:text-5xl md:text-5xl lg:text-6xl"
-            style={{ color: 'var(--brand-deep)', letterSpacing: '-0.03em' }}
-          >
-            A Mayros.
-          </h2>
-          <a
-            href="#sobre"
-            className="inline-flex items-center gap-3 pr-1.5 pl-5 py-1.5 rounded-full text-white font-body font-medium text-sm transition-colors duration-200"
-            style={{ background: 'var(--brand-primary)' }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--brand-deep)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'var(--brand-primary)'}
-          >
-            Conheça nossa história
-            <span
-              className="inline-flex items-center justify-center w-8 h-8 rounded-full"
-              style={{ background: '#fff', color: 'var(--brand-primary)' }}
-            >
-              <Icon.ArrowRight />
-            </span>
-          </a>
-        </FadeIn>
-        <FadeIn delay={150} className="mt-8 md:mt-0">
-          <p
-            className="font-body font-light text-xl sm:text-2xl md:text-2xl lg:text-3xl leading-relaxed"
-            style={{ color: 'var(--ink-body)' }}
-          >
-            A Mayros Corretora de Seguros há mais de 30 anos protegendo famílias e empresas com atendimento humanizado e as melhores condições do mercado.
+          <p className="text-sm font-medium mb-6" style={{ color: 'var(--brand-medium)', letterSpacing: '0.05em' }}>
+            // SOBRE A MAYROS
           </p>
         </FadeIn>
+
+        <div className="md:grid md:grid-cols-12 md:gap-12 lg:gap-20">
+          <FadeIn className="md:col-span-5">
+            <h2
+              className="font-medium text-3xl sm:text-4xl mb-8 leading-tight"
+              style={{ color: 'var(--brand-deep)', letterSpacing: '-0.01em' }}
+            >
+              Tradição que vira tranquilidade.
+            </h2>
+            <p
+              className="text-lg leading-relaxed mb-10 font-light"
+              style={{ color: 'var(--ink-body)' }}
+            >
+              Há mais de 30 anos protegendo famílias e empresas com atendimento humanizado e as melhores condições do mercado. Cotamos em todas as seguradoras parceiras para entregar a proteção certa para você.
+            </p>
+            <a
+              href="https://wa.me/5551984810400"
+              className="inline-flex items-center gap-2 font-medium text-sm group"
+              style={{ color: 'var(--brand-deep)' }}
+            >
+              Fale com nossa equipe
+              <Icon.ArrowRight />
+            </a>
+          </FadeIn>
+
+          <FadeIn delay={150} className="md:col-span-7 mt-16 md:mt-0">
+            <div className="grid grid-cols-3 gap-8 md:gap-12">
+              {[
+                { num: '+30', label: 'Anos de mercado' },
+                { num: '+10mil', label: 'Clientes protegidos' },
+                { num: '15+', label: 'Seguradoras parceiras' },
+              ].map((s, i) => (
+                <div key={i}>
+                  <p
+                    className="font-heading italic font-normal text-4xl sm:text-5xl md:text-6xl mb-3"
+                    style={{ color: 'var(--brand-deep)', letterSpacing: '-0.02em', lineHeight: 1 }}
+                  >
+                    {s.num}
+                  </p>
+                  <p className="text-xs sm:text-sm" style={{ color: 'var(--ink-muted)' }}>
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
       </div>
     </section>
   );
 }
 
 /* =================================================================
-   SERVICOS
+   COBERTURAS — lista numerada, clicável WhatsApp, serif nos nomes
 ================================================================= */
 const SEGUROS = [
-  { name: 'Seguro Auto', desc: 'Carro novo ou renovação com as melhores coberturas do mercado.' },
+  { name: 'Seguro Auto', desc: 'Carro novo ou renovação com as melhores coberturas.' },
   { name: 'Seguro Residencial', desc: 'Patrimônio protegido a partir de R$ 40,00 por mês.' },
   { name: 'Seguro de Vida', desc: 'Proteção para sua família e benefício para funcionários.' },
   { name: 'Seguro Empresarial', desc: 'Empresa blindada, negócio garantido em todas as frentes.' },
@@ -881,184 +778,139 @@ const SEGUROS = [
   { name: 'Consórcio', desc: 'Planeje seu próximo carro ou imóvel com parcelas justas.' },
 ];
 
-const CARDS = [
-  {
-    icon: <Icon.Headphones />,
-    title: 'Atendimento Humanizado',
-    tags: ['Sem robô', 'WhatsApp', 'Ágil', 'Equipe própria'],
-    desc: 'Você fala diretamente com nossa equipe. Sem filas, sem robôs.',
-  },
-  {
-    icon: <Icon.BarChart />,
-    title: 'Melhores Condições',
-    tags: ['Menor preço', 'Mais cobertura', 'Comparativo', 'Claro'],
-    desc: 'Cotamos em todas as seguradoras e entregamos a melhor relação custo-cobertura.',
-  },
-  {
-    icon: <Icon.ShieldCheck />,
-    title: 'Experiência e Tradição',
-    tags: ['+30 anos', 'Tradição', 'Confiança', 'Renovação fácil'],
-    desc: 'Décadas protegendo famílias e empresas com solidez e presença constante.',
-  },
-];
-
-function ServicosSection() {
-  const y = useParallax(0.08);
+function CoberturasSection() {
   const [hovered, setHovered] = useState(null);
-  const SERV_BG = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80';
-
   return (
-    <section id="servicos" className="relative px-4 sm:px-6 md:px-10 lg:px-16 py-16 sm:py-20 md:py-24 overflow-hidden bg-white">
-      <div className="parallax-wrap" aria-hidden="true">
-        <img
-          src={SERV_BG}
-          alt=""
-          className="parallax-img"
-          style={{ transform: `translateY(${y}px)`, opacity: 0.4 }}
-          loading="lazy"
-        />
-        <div
-          className="parallax-overlay"
-          style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.90) 50%, rgba(255,255,255,0.97) 100%)' }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-[88rem] mx-auto">
+    <section id="servicos" className="px-6 md:px-10 lg:px-16 py-20 md:py-32" style={{ background: 'var(--bg-soft)' }}>
+      <div className="max-w-[88rem] mx-auto">
         <FadeIn>
-          <p
-            className="font-body text-sm mb-4 sm:mb-6"
-            style={{ color: 'var(--brand-medium)' }}
-          >
+          <p className="text-sm font-medium mb-6" style={{ color: 'var(--brand-medium)', letterSpacing: '0.05em' }}>
             // NOSSAS COBERTURAS
           </p>
+          <h2
+            className="font-medium text-3xl sm:text-4xl mb-12 md:mb-16 max-w-2xl leading-tight"
+            style={{ color: 'var(--brand-deep)', letterSpacing: '-0.01em' }}
+          >
+            Proteção completa para cada momento da sua vida.
+          </h2>
         </FadeIn>
 
-        <BlurText
-          text={'Proteção\ncompleta.'}
-          className="font-heading italic text-5xl sm:text-6xl md:text-7xl lg:text-[6rem]"
-          style={{ color: 'var(--brand-deep)', lineHeight: 0.95, letterSpacing: '-2px' }}
-          highlight={['completa']}
-        />
-
-        <ul className="mt-10 sm:mt-12" onMouseLeave={() => setHovered(null)}>
+        <ul onMouseLeave={() => setHovered(null)}>
           {SEGUROS.map((s, i) => {
             const dim = hovered !== null && hovered !== i;
             return (
               <li
                 key={i}
-                className="border-b cursor-pointer"
+                className="border-b"
                 style={{
-                  borderColor: 'var(--border-soft)',
-                  opacity: dim ? 0.3 : 1,
+                  borderColor: 'rgba(15,42,95,0.1)',
+                  opacity: dim ? 0.35 : 1,
                   transition: 'opacity 300ms cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
                 onMouseEnter={() => setHovered(i)}
               >
                 <a
-                  href={`https://wa.me/5551984810400?text=Quero%20cotar%20${encodeURIComponent(s.name)}`}
-                  className="flex items-baseline justify-between py-5 sm:py-6 gap-3 sm:gap-4"
+                  href={`https://wa.me/5551984810400?text=${encodeURIComponent('Olá, quero cotar ' + s.name)}`}
+                  className="flex items-baseline justify-between py-6 md:py-8 gap-4 md:gap-8"
                 >
                   <span
-                    className="font-body text-[10px] sm:text-xs w-12 sm:w-16 shrink-0"
+                    className="text-xs w-12 sm:w-14 shrink-0 font-medium"
                     style={{ color: 'var(--brand-light)', letterSpacing: '0.05em' }}
                   >
                     {String(i + 1).padStart(2, '0')}/08
                   </span>
                   <span
-                    className="font-heading italic flex-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+                    className="font-heading italic flex-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
                     style={{
                       color: 'var(--brand-deep)',
-                      letterSpacing: '-1px',
-                      transform: hovered === i ? 'translateX(8px)' : 'translateX(0)',
+                      letterSpacing: '-0.02em',
+                      transform: hovered === i ? 'translateX(12px)' : 'translateX(0)',
                       transition: 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1)',
                     }}
                   >
                     {s.name}
                   </span>
                   <span
-                    className="hidden md:block font-body text-sm leading-snug max-w-[260px]"
+                    className="hidden md:block text-sm leading-snug max-w-[280px]"
                     style={{ color: 'var(--ink-muted)' }}
                   >
                     {s.desc}
                   </span>
                   <span
-                    className="font-body text-xs sm:text-sm whitespace-nowrap inline-flex items-center gap-1"
+                    className="text-xs sm:text-sm whitespace-nowrap inline-flex items-center gap-1 font-medium"
                     style={{
-                      color: 'var(--brand-primary)',
+                      color: 'var(--brand-deep)',
                       opacity: hovered === i ? 1 : 0,
                       transition: 'opacity 300ms cubic-bezier(0.16, 1, 0.3, 1)',
                     }}
                   >
-                    Cote agora →
+                    Cotar →
                   </span>
                 </a>
               </li>
             );
           })}
         </ul>
+      </div>
+    </section>
+  );
+}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-12 sm:mt-16">
-          {CARDS.map((c, i) => (
+/* =================================================================
+   DIFERENCIAIS — cards sem peso visual
+================================================================= */
+const DIFERENCIAIS = [
+  {
+    icon: <Icon.Headphones />,
+    title: 'Atendimento humanizado',
+    desc: 'Você fala diretamente com nossa equipe. Sem filas, sem robôs, sem tempo perdido.',
+  },
+  {
+    icon: <Icon.BarChart />,
+    title: 'Melhores condições',
+    desc: 'Cotamos em todas as seguradoras e entregamos a melhor relação custo-cobertura para você.',
+  },
+  {
+    icon: <Icon.ShieldCheck />,
+    title: 'Experiência que protege',
+    desc: 'Mais de 30 anos protegendo famílias e empresas com solidez e presença constante.',
+  },
+];
+
+function DiferenciaisSection() {
+  return (
+    <section className="px-6 md:px-10 lg:px-16 py-20 md:py-32 bg-white">
+      <div className="max-w-[88rem] mx-auto">
+        <FadeIn>
+          <p className="text-sm font-medium mb-6" style={{ color: 'var(--brand-medium)', letterSpacing: '0.05em' }}>
+            // POR QUE MAYROS
+          </p>
+          <h2
+            className="font-medium text-3xl sm:text-4xl mb-16 md:mb-20 max-w-2xl leading-tight"
+            style={{ color: 'var(--brand-deep)', letterSpacing: '-0.01em' }}
+          >
+            Três motivos para confiar sua proteção a nós.
+          </h2>
+        </FadeIn>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+          {DIFERENCIAIS.map((d, i) => (
             <FadeIn key={i} delay={i * 120}>
-              <article
-                className="liquid-glass p-5 sm:p-6 flex flex-col h-full"
-                style={{
-                  borderRadius: '1.25rem',
-                  minHeight: 300,
-                  border: '1px solid rgba(27,63,140,0.08)',
-                  transition: 'transform .3s var(--ease), box-shadow .3s var(--ease)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(15,42,95,0.10)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '';
-                }}
+              <div style={{ color: 'var(--brand-medium)' }} className="mb-6">
+                {d.icon}
+              </div>
+              <h3
+                className="font-medium text-lg sm:text-xl mb-4"
+                style={{ color: 'var(--brand-deep)' }}
               >
-                <div className="flex items-start justify-between mb-5 sm:mb-6">
-                  <div
-                    className="liquid-glass inline-flex items-center justify-center"
-                    style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: '0.75rem',
-                      color: 'var(--brand-primary)',
-                    }}
-                  >
-                    {c.icon}
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2 mb-auto">
-                  {c.tags.map((t, j) => (
-                    <span
-                      key={j}
-                      className="liquid-glass text-[11px] px-3 py-1"
-                      style={{
-                        color: 'var(--brand-medium)',
-                        borderRadius: '9999px',
-                      }}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-6 sm:mt-8">
-                  <h3
-                    className="font-heading italic text-2xl sm:text-3xl leading-tight"
-                    style={{ color: 'var(--brand-deep)', letterSpacing: '-1px' }}
-                  >
-                    {c.title}
-                  </h3>
-                  <p
-                    className="font-body font-light text-sm mt-3 leading-snug"
-                    style={{ color: 'var(--ink-body)', maxWidth: '32ch' }}
-                  >
-                    {c.desc}
-                  </p>
-                </div>
-              </article>
+                {d.title}
+              </h3>
+              <p
+                className="text-base leading-relaxed font-light"
+                style={{ color: 'var(--ink-body)' }}
+              >
+                {d.desc}
+              </p>
             </FadeIn>
           ))}
         </div>
@@ -1068,66 +920,130 @@ function ServicosSection() {
 }
 
 /* =================================================================
-   DEPOIMENTOS
+   DEPOIMENTOS — 1 por vez, setas + dots
 ================================================================= */
 const DEPOIMENTOS = [
-  { txt: 'Empresa séria, já faço seguro há anos com eles. Atendimento rápido e condições excelentes.', name: 'Cliente 1' },
-  { txt: 'Há vários anos na Mayros. Preço justo e sempre bem atendida. Super recomendo!', name: 'Cliente 2' },
-  { txt: 'Toda renovação já recebo a cotação antes de vencer. Organização que admiro muito.', name: 'Cliente 3' },
-  { txt: 'Todos os meus carros sempre segurados com a Mayros. Os melhores valores do mercado.', name: 'Cliente 4' },
-  { txt: 'Excelente atendimento. Equilibram cobertura e preço sem pressionar o cliente.', name: 'Cliente 5' },
+  {
+    txt: 'Empresa séria, já faço seguro há anos com eles. Atendimento rápido e condições excelentes.',
+    name: 'Maria S.',
+    city: 'Porto Alegre, RS',
+    type: 'Cliente Auto há 5 anos',
+  },
+  {
+    txt: 'Há vários anos na Mayros. Preço justo e sempre bem atendida. Super recomendo.',
+    name: 'Ricardo M.',
+    city: 'Canoas, RS',
+    type: 'Cliente Residencial há 8 anos',
+  },
+  {
+    txt: 'Toda renovação já recebo a cotação antes de vencer. Organização que admiro muito.',
+    name: 'Juliana A.',
+    city: 'Porto Alegre, RS',
+    type: 'Cliente Auto + Vida há 3 anos',
+  },
+  {
+    txt: 'Todos os meus carros sempre segurados com a Mayros. Os melhores valores do mercado.',
+    name: 'Carlos H.',
+    city: 'Novo Hamburgo, RS',
+    type: 'Cliente Auto há 12 anos',
+  },
+  {
+    txt: 'Excelente atendimento. Equilibram cobertura e preço sem pressionar o cliente.',
+    name: 'Fernanda L.',
+    city: 'Gravataí, RS',
+    type: 'Cliente Empresarial há 4 anos',
+  },
 ];
 
 function DepoimentosSection() {
+  const [idx, setIdx] = useState(0);
+  const [fade, setFade] = useState(true);
+  const total = DEPOIMENTOS.length;
+
+  const go = (n) => {
+    setFade(false);
+    setTimeout(() => {
+      setIdx((n + total) % total);
+      setFade(true);
+    }, 200);
+  };
+
+  const d = DEPOIMENTOS[idx];
+
   return (
-    <section className="px-4 sm:px-6 md:px-10 lg:px-16 py-16 sm:py-20 md:py-24" style={{ background: 'var(--bg-soft)' }}>
+    <section className="px-6 md:px-10 lg:px-16 py-20 md:py-32" style={{ background: 'var(--bg-soft)' }}>
       <div className="max-w-[88rem] mx-auto">
         <FadeIn>
-          <p
-            className="font-body text-sm mb-4 sm:mb-6"
-            style={{ color: 'var(--brand-medium)' }}
-          >
-            // CLIENTES QUE CONFIAM
+          <p className="text-sm font-medium mb-6" style={{ color: 'var(--brand-medium)', letterSpacing: '0.05em' }}>
+            // QUEM CONFIA NA MAYROS
           </p>
+          <h2
+            className="font-medium text-3xl sm:text-4xl mb-16 md:mb-20 max-w-2xl leading-tight"
+            style={{ color: 'var(--brand-deep)', letterSpacing: '-0.01em' }}
+          >
+            O que dizem nossas famílias.
+          </h2>
         </FadeIn>
-        <BlurText
-          text={'O que dizem\nnossas famílias.'}
-          className="font-heading italic text-4xl sm:text-5xl md:text-6xl"
-          style={{ color: 'var(--brand-deep)', letterSpacing: '-2px', lineHeight: 1.05 }}
-        />
 
-        <div className="mt-10 sm:mt-12 -mx-4 sm:mx-0">
-          <Marquee duration="40s">
-            {DEPOIMENTOS.map((d, i) => (
-              <article
-                key={i}
-                className="liquid-glass p-6 sm:p-8 shrink-0 mx-2 sm:mx-3"
-                style={{
-                  width: 300,
-                  maxWidth: 340,
-                  borderRadius: '1.25rem',
-                  border: '1px solid rgba(27,63,140,0.08)',
-                }}
-              >
-                <div className="mb-4" style={{ color: 'var(--brand-primary)' }}>
-                  ★★★★★
-                </div>
-                <p
-                  className="font-body italic text-sm sm:text-base mb-6 leading-relaxed"
-                  style={{ color: 'var(--ink-body)' }}
-                >
-                  "{d.txt}"
-                </p>
-                <div className="border-t mb-4" style={{ borderColor: 'var(--border-soft)' }} />
-                <p
-                  className="font-body font-medium text-sm"
-                  style={{ color: 'var(--brand-deep)' }}
-                >
-                  — {d.name}
-                </p>
-              </article>
-            ))}
-          </Marquee>
+        <div className="max-w-3xl mx-auto text-center">
+          <div
+            className="depo-fade"
+            style={{ opacity: fade ? 1 : 0, transform: fade ? 'translateY(0)' : 'translateY(8px)' }}
+          >
+            <p
+              className="font-heading italic text-2xl sm:text-3xl md:text-4xl leading-relaxed mb-10"
+              style={{ color: 'var(--brand-deep)', letterSpacing: '-0.01em' }}
+            >
+              "{d.txt}"
+            </p>
+            <p
+              className="font-medium text-base mb-1"
+              style={{ color: 'var(--brand-deep)' }}
+            >
+              {d.name} — {d.city}
+            </p>
+            <p className="text-sm" style={{ color: 'var(--ink-muted)' }}>
+              {d.type}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center gap-6 mt-12">
+            <button
+              onClick={() => go(idx - 1)}
+              className="w-11 h-11 rounded-full inline-flex items-center justify-center transition-colors duration-200"
+              style={{ color: 'var(--brand-deep)', border: '1px solid rgba(15,42,95,0.15)' }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(15,42,95,0.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+              aria-label="Anterior"
+            >
+              <Icon.ChevronLeft />
+            </button>
+            <div className="flex items-center gap-2">
+              {DEPOIMENTOS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => go(i)}
+                  className="rounded-full transition-all duration-300"
+                  style={{
+                    width: i === idx ? 24 : 8,
+                    height: 8,
+                    background: i === idx ? 'var(--brand-deep)' : 'rgba(15,42,95,0.2)',
+                  }}
+                  aria-label={`Depoimento ${i + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={() => go(idx + 1)}
+              className="w-11 h-11 rounded-full inline-flex items-center justify-center transition-colors duration-200"
+              style={{ color: 'var(--brand-deep)', border: '1px solid rgba(15,42,95,0.15)' }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(15,42,95,0.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+              aria-label="Próximo"
+            >
+              <Icon.ChevronRight />
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -1140,46 +1056,43 @@ function DepoimentosSection() {
 const FAQS = [
   {
     q: 'Como faço para cotar meu seguro?',
-    a: 'Escolha a modalidade e clique em contato. Nossa equipe fala direto com você, sem robôs. Atendimento 100% humanizado.',
+    a: 'Escolha a modalidade na seção de coberturas e clique. Nossa equipe atende direto pelo WhatsApp ou telefone, sem robôs e sem filas.',
   },
   {
     q: 'Como fechar o seguro com a Mayros?',
-    a: 'Nosso time realiza todo o fechamento com segurança e agilidade diretamente com você.',
+    a: 'Nosso time realiza todo o fechamento com segurança e agilidade diretamente com você, do orçamento à apólice.',
   },
   {
     q: 'Posso indicar alguém e ganhar desconto?',
-    a: 'Sim! Indicando um amigo você garante desconto na sua próxima renovação.',
+    a: 'Sim. Indicando um amigo você garante desconto na sua próxima renovação. Fale com nossa equipe para detalhes.',
   },
 ];
 
 function FaqSection() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="faq" className="px-4 sm:px-6 md:px-10 lg:px-16 py-16 sm:py-20 md:py-24 bg-white">
-      <div className="max-w-[88rem] mx-auto md:grid md:grid-cols-2 md:gap-10 lg:gap-12 md:items-start">
+    <section id="faq" className="px-6 md:px-10 lg:px-16 py-20 md:py-32 bg-white">
+      <div className="max-w-[88rem] mx-auto md:grid md:grid-cols-2 md:gap-16 lg:gap-20 md:items-start">
         <FadeIn>
-          <p
-            className="font-body text-sm mb-4 sm:mb-6"
-            style={{ color: 'var(--brand-medium)' }}
-          >
+          <p className="text-sm font-medium mb-6" style={{ color: 'var(--brand-medium)', letterSpacing: '0.05em' }}>
             // PERGUNTAS FREQUENTES
           </p>
           <h2
-            className="font-heading italic text-4xl sm:text-5xl"
-            style={{ color: 'var(--brand-deep)', letterSpacing: '-2px', lineHeight: 1.05 }}
+            className="font-medium text-3xl sm:text-4xl leading-tight"
+            style={{ color: 'var(--brand-deep)', letterSpacing: '-0.01em' }}
           >
-            Tire suas<br />dúvidas.
+            Tire suas dúvidas.
           </h2>
         </FadeIn>
-        <FadeIn delay={150} className="mt-8 md:mt-0">
+        <FadeIn delay={150} className="mt-12 md:mt-0">
           <div>
             {FAQS.map((f, i) => {
               const isOpen = open === i;
               return (
-                <div key={i} className="border-t" style={{ borderColor: 'var(--border-soft)' }}>
+                <div key={i} className="border-t" style={{ borderColor: 'rgba(15,42,95,0.1)' }}>
                   <button
                     onClick={() => setOpen(isOpen ? -1 : i)}
-                    className="w-full flex justify-between items-center py-4 sm:py-5 text-left font-body font-medium text-base sm:text-lg cursor-pointer gap-4"
+                    className="w-full flex justify-between items-center py-6 text-left font-medium text-base sm:text-lg cursor-pointer gap-4"
                     style={{ color: 'var(--brand-deep)' }}
                   >
                     <span>{f.q}</span>
@@ -1189,7 +1102,7 @@ function FaqSection() {
                   </button>
                   <div className={'faq-answer' + (isOpen ? ' open' : '')}>
                     <p
-                      className="font-body text-sm sm:text-base leading-relaxed"
+                      className="text-base leading-relaxed font-light"
                       style={{ color: 'var(--ink-body)' }}
                     >
                       {f.a}
@@ -1198,7 +1111,7 @@ function FaqSection() {
                 </div>
               );
             })}
-            <div className="border-t" style={{ borderColor: 'var(--border-soft)' }} />
+            <div className="border-t" style={{ borderColor: 'rgba(15,42,95,0.1)' }} />
           </div>
         </FadeIn>
       </div>
@@ -1211,31 +1124,42 @@ function FaqSection() {
 ================================================================= */
 function ContatoSection() {
   return (
-    <section id="contato" className="px-4 sm:px-6 md:px-10 lg:px-16 py-16 sm:py-20 md:py-24" style={{ background: 'var(--bg-soft)' }}>
-      <div className="max-w-[88rem] mx-auto md:grid md:grid-cols-2 md:gap-10 lg:gap-12 md:items-start">
+    <section id="contato" className="px-6 md:px-10 lg:px-16 py-20 md:py-32" style={{ background: 'var(--bg-soft)' }}>
+      <div className="max-w-[88rem] mx-auto md:grid md:grid-cols-2 md:gap-16 lg:gap-20 md:items-start">
         <FadeIn>
-          <p
-            className="font-body text-sm mb-4 sm:mb-6"
-            style={{ color: 'var(--brand-medium)' }}
-          >
+          <p className="text-sm font-medium mb-6" style={{ color: 'var(--brand-medium)', letterSpacing: '0.05em' }}>
             // FALE CONOSCO
           </p>
           <h2
-            className="font-heading italic text-4xl sm:text-5xl md:text-6xl mb-5 sm:mb-6"
-            style={{ color: 'var(--brand-deep)', letterSpacing: '-2px', lineHeight: 1.05 }}
+            className="font-medium text-3xl sm:text-4xl mb-8 leading-tight"
+            style={{ color: 'var(--brand-deep)', letterSpacing: '-0.01em' }}
           >
-            Solicite sua<br />cotação.
+            Solicite sua cotação.
           </h2>
           <p
-            className="font-body text-base max-w-sm"
-            style={{ color: 'var(--ink-muted)' }}
+            className="text-lg leading-relaxed font-light mb-10 max-w-md"
+            style={{ color: 'var(--ink-body)' }}
           >
-            Entre em contato pelo formulário ou diretamente pelo WhatsApp. Respondemos o mais breve possível.
+            Entre em contato pelo formulário ou diretamente pelo WhatsApp. Respondemos no mesmo dia útil.
           </p>
+          <div className="space-y-3">
+            <p className="text-sm" style={{ color: 'var(--ink-muted)' }}>
+              <span className="block font-medium mb-1" style={{ color: 'var(--brand-deep)' }}>Telefone</span>
+              (51) 98481.0400 / (51) 98404.7819
+            </p>
+            <p className="text-sm" style={{ color: 'var(--ink-muted)' }}>
+              <span className="block font-medium mb-1" style={{ color: 'var(--brand-deep)' }}>Endereço</span>
+              Rua Andradas, 1519 — Porto Alegre / RS
+            </p>
+            <p className="text-sm" style={{ color: 'var(--ink-muted)' }}>
+              <span className="block font-medium mb-1" style={{ color: 'var(--brand-deep)' }}>Horário</span>
+              Segunda a Sexta — 08h às 18h
+            </p>
+          </div>
         </FadeIn>
 
-        <FadeIn delay={150} className="mt-10 md:mt-0">
-          <form onSubmit={(e) => { e.preventDefault(); alert('Mensagem enviada! Entraremos em contato em breve.'); }}>
+        <FadeIn delay={150} className="mt-16 md:mt-0">
+          <form onSubmit={(e) => { e.preventDefault(); alert('Mensagem enviada. Entraremos em contato em breve.'); }}>
             <div className="field-wrap">
               <input id="f-nome" type="text" placeholder=" " required />
               <label htmlFor="f-nome">Nome</label>
@@ -1254,20 +1178,20 @@ function ContatoSection() {
             </div>
             <button
               type="submit"
-              className="w-full py-4 text-white font-body font-medium uppercase transition-colors duration-200"
+              className="w-full py-4 text-white font-medium text-sm transition-colors duration-200"
               style={{
-                background: 'var(--brand-primary)',
+                background: 'var(--brand-deep)',
                 borderRadius: '9999px',
-                letterSpacing: '0.08em',
+                letterSpacing: '0.05em',
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--brand-deep)'}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--brand-primary)'}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--brand-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--brand-deep)'}
             >
-              Enviar
+              Enviar mensagem
             </button>
             <a
               href="https://wa.me/5551984810400"
-              className="w-full mt-4 py-4 flex items-center justify-center gap-3 font-body font-medium transition-colors duration-200"
+              className="w-full mt-3 py-4 flex items-center justify-center gap-3 font-medium text-sm transition-colors duration-200"
               style={{
                 borderRadius: '9999px',
                 border: '1px solid var(--whatsapp)',
@@ -1293,32 +1217,33 @@ function ContatoSection() {
 }
 
 /* =================================================================
-   FOOTER
+   FOOTER — + CNPJ + SUSEP
 ================================================================= */
 function Footer() {
   return (
-    <footer className="px-4 sm:px-6 md:px-10 lg:px-16 py-12 sm:py-16 text-white" style={{ background: 'var(--brand-deep)' }}>
+    <footer className="px-6 md:px-10 lg:px-16 py-16 md:py-20 text-white" style={{ background: 'var(--brand-deep)' }}>
       <div className="max-w-[88rem] mx-auto">
-        <div className="border-b pb-6 sm:pb-8 mb-6 sm:mb-8" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+        <div className="border-b pb-8 mb-10" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
           <p className="font-heading italic text-3xl sm:text-4xl">MAYROS</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8">
           <div>
-            <h4 className="font-body font-medium text-xs uppercase mb-4" style={{ letterSpacing: '0.14em', color: 'var(--brand-light)' }}>
+            <h4 className="font-medium text-xs uppercase mb-5" style={{ letterSpacing: '0.14em', color: 'var(--brand-light)' }}>
               Contato
             </h4>
-            <ul className="font-body text-sm leading-loose space-y-1" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            <ul className="text-sm leading-loose space-y-1" style={{ color: 'rgba(255,255,255,0.7)' }}>
               <li>(51) 98481.0400</li>
               <li>(51) 98404.7819</li>
-              <li>Rua Andradas, 1519 — Porto Alegre / RS</li>
+              <li>Rua Andradas, 1519</li>
+              <li>Porto Alegre / RS</li>
               <li>Seg a Sex — 08h às 18h</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-body font-medium text-xs uppercase mb-4" style={{ letterSpacing: '0.14em', color: 'var(--brand-light)' }}>
+            <h4 className="font-medium text-xs uppercase mb-5" style={{ letterSpacing: '0.14em', color: 'var(--brand-light)' }}>
               Navegação
             </h4>
-            <ul className="font-body text-sm leading-loose">
+            <ul className="text-sm leading-loose">
               {[
                 { href: '#inicio', label: 'Início' },
                 { href: '#sobre', label: 'Sobre' },
@@ -1330,9 +1255,9 @@ function Footer() {
                   <a
                     href={n.href}
                     className="transition-colors duration-200"
-                    style={{ color: 'rgba(255,255,255,0.6)' }}
+                    style={{ color: 'rgba(255,255,255,0.7)' }}
                     onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}
                   >
                     {n.label}
                   </a>
@@ -1341,18 +1266,18 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-body font-medium text-xs uppercase mb-4" style={{ letterSpacing: '0.14em', color: 'var(--brand-light)' }}>
+            <h4 className="font-medium text-xs uppercase mb-5" style={{ letterSpacing: '0.14em', color: 'var(--brand-light)' }}>
               Seguros
             </h4>
-            <ul className="font-body text-sm leading-loose">
+            <ul className="text-sm leading-loose">
               {['Auto', 'Residencial', 'Vida', 'Empresarial', 'Saúde', 'Viagem', 'Moto', 'Consórcio'].map((s, i) => (
                 <li key={i}>
                   <a
                     href="#servicos"
                     className="transition-colors duration-200"
-                    style={{ color: 'rgba(255,255,255,0.6)' }}
+                    style={{ color: 'rgba(255,255,255,0.7)' }}
                     onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}
                   >
                     {s}
                   </a>
@@ -1361,20 +1286,25 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t mt-8 pt-6 sm:pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
-          <p className="font-body text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            © 2026 Mayros Corretora de Seguros.
+        <div className="border-t mt-12 pt-8" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              © 2026 Mayros Corretora de Seguros. Todos os direitos reservados.
+            </p>
+            <a
+              href="https://instagram.com/mayroscorretora"
+              className="inline-flex items-center gap-2 text-xs transition-colors duration-200"
+              style={{ color: 'rgba(255,255,255,0.5)' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}
+            >
+              <Icon.Instagram />
+              @mayroscorretora
+            </a>
+          </div>
+          <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            CNPJ: 00.000.000/0001-00 · Registro SUSEP: 00.000000-0
           </p>
-          <a
-            href="https://instagram.com/mayroscorretora"
-            className="inline-flex items-center gap-2 font-body text-xs transition-colors duration-200"
-            style={{ color: 'rgba(255,255,255,0.4)' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
-            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}
-          >
-            <Icon.Instagram />
-            @mayroscorretora
-          </a>
         </div>
       </div>
     </footer>
@@ -1392,7 +1322,6 @@ function WhatsAppButton() {
       aria-label="Falar no WhatsApp (51) 98481.0400"
     >
       <Icon.WhatsApp />
-      <span className="wa-tooltip liquid-glass">(51) 98481.0400</span>
     </a>
   );
 }
@@ -1406,7 +1335,8 @@ function App() {
       <Navbar />
       <HeroSection />
       <SobreSection />
-      <ServicosSection />
+      <CoberturasSection />
+      <DiferenciaisSection />
       <DepoimentosSection />
       <FaqSection />
       <ContatoSection />
